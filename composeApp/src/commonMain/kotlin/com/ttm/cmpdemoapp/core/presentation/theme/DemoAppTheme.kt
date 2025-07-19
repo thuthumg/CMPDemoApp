@@ -1,4 +1,4 @@
-package com.ttm.cmpdemoapp.theme
+package com.ttm.cmpdemoapp.core.presentation.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

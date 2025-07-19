@@ -1,4 +1,4 @@
-package com.ttm.cmpdemoapp.theme
+package com.ttm.cmpdemoapp.core.presentation.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily

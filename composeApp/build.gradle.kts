@@ -1,4 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -7,6 +6,11 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.ksp)
+   // alias(libs.plugins.room)
+
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -27,12 +31,19 @@ kotlin {
             isStatic = true
         }
     }
-    
+//    room {
+//        schemaDirectory("$projectDir/schemas")
+//    }
     sourceSets {
         
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.sqldelight.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -43,11 +54,45 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+
+
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.kotlinx.serialization.json)
+          //  implementation(libs.androidx.room.runtime)
+          //  implementation(libs.sqlite.bundled)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            api(libs.koin.core)
+
+            implementation(libs.bundles.ktor)
+            implementation(libs.bundles.coil)
+
+            implementation(libs.kotlinx.datetime)
+
+            implementation(libs.multiplatform.settings)
+            implementation(libs.multiplatform.settings.no.arg)
+
+            implementation(libs.runtime)
+
+            //for navigation
+            implementation(libs.jetbrains.compose.navigation)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        iosMain.dependencies{
+            implementation(libs.sqldelight.ios)
+            implementation(libs.ktor.client.darwin)
+        }
+
+        dependencies {
+          //  ksp(libs.androidx.room.compiler)
+        }
+
     }
+
+
 }
 
 android {
@@ -79,5 +124,14 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+}
+
+sqldelight{
+    databases{
+        create("AppDatabase"){
+            packageName.set("com.ttm.cmpdemoapp")
+        }
+    }
+
 }
 
