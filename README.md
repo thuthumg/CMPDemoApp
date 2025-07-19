@@ -1,14 +1,61 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# CMPDemoApp
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+CMPDemoApp is a **Compose Multiplatform** demo application showcasing a complete mobile architecture for both **Android and iOS** using **shared business logic and UI**. It includes essential mobile features like local storage, network communication, authentication, offline support, and camera usage — all built using modern tools and best practices.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+---
 
+## Features
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+- Authentication Flow (Login)
+- Home Screen
+- Sample List Screen
+- Detail Screen
+- Settings Screen
+- Camera Access
+- Online & Offline Support
+- Shared UI and Logic across Android & iOS
+
+---
+
+## Architecture
+
+CMPDemoApp follows **Clean Architecture** with strict separation of concerns and modular layers:
+
+- **Presentation Layer**  
+  Jetpack Compose UI (shared) with **MVI pattern** for predictable state management.
+
+- **Domain Layer**  
+  Platform-independent business logic and use cases.
+
+- **Data Layer**  
+  Abstracted repositories using:
+  - **Ktor** for API communication
+  - **SQLDelight** for type-safe local database access
+
+- **Dependency Injection**  
+  Powered by **Koin**, configured for multiplatform usage.
+
+---
+
+## Tech Stack
+
+| Layer                | Tools Used                           |
+|----------------------|--------------------------------------|
+| UI                   | Jetpack Compose (Multiplatform)      |
+| Architecture         | Clean Architecture + MVI             |
+| Dependency Injection | [Koin](https://insert-koin.io)       |
+| Networking           | [Ktor](https://ktor.io)              |
+| Local Database       | [SQLDelight](https://cashapp.github.io/sqldelight/) |
+| State Management     | Kotlin Coroutines + Flow             |
+| Shared Logic         | Kotlin Multiplatform (KMP)           |
+
+---
+
+##Purpose
+
+This app is a **learning project** built to explore and demonstrate:
+
+- Clean architecture principles in a multiplatform environment
+- Building reusable UI with **Jetpack Compose Multiplatform**
+- Sharing business logic and storage layers between Android and iOS
+- Real-world app patterns including auth, camera, and offline support
